@@ -1,11 +1,11 @@
 import { Center, SimpleGrid, Spinner } from "@chakra-ui/react"
-import { useParams, Navigate } from "react-router-dom"
+import { useParams, Navigate, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { api } from "../api"
 import CardInfo from "../components/CardInfo"
 import { AppContext } from "../components/AppContext"
 
-interface UserData {
+export interface UserData {
     email: string
     password: string
     name: string
@@ -16,6 +16,7 @@ interface UserData {
 const Conta = () => {
     const [ userData, setUserData ] = useState<null | UserData>()
     const { id } = useParams()
+	const navigate = useNavigate()
 
     const { isLoggedIn } = useContext(AppContext)
 
@@ -50,7 +51,7 @@ const Conta = () => {
                     ) : 
                     (
                         <>
-                            <CardInfo mainContent={`Bem vinda ${userData?.name}`} content={`${actualData.getDay()} / ${actualData.getMonth()} / ${actualData.getFullYear()} ${actualData.getHours()}:${actualData.getMinutes()}`} />
+                            <CardInfo onClick={() => navigate("/infoconta")} mainContent={`Bem vinda ${userData?.name}`} content={`${actualData.getDay()} / ${actualData.getMonth()} / ${actualData.getFullYear()} ${actualData.getHours()}:${actualData.getMinutes()}`} />
                             <CardInfo mainContent='Saldo' content={`R$ ${userData.balance}`}/>
                         </>
                     )
