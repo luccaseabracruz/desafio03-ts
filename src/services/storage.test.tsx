@@ -1,7 +1,9 @@
 import { changeLocalStorage, createLocalStorage, getAllLocalStorage } from "./storage"
 
 const dioBank = {
-    login: false
+    login: false,
+	email: '',
+	password: ''
 }
 
 describe('storage', () => {
